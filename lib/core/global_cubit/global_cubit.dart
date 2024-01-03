@@ -11,5 +11,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   late String firstName;
   late String lastName;
   late String phone;
+  List filterSearch = [];
+
 }
 

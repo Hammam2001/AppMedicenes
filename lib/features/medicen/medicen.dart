@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:untitled1/core/http_remote/http_remote.dart';
+import 'package:untitled1/features/langouge/langouge.dart';
+import '../search/search.dart';
+import 'details.dart';
 
 class Model {
   final String name;
@@ -12,70 +17,82 @@ class Model {
   });
 }
 
-class Med extends StatelessWidget {
-  Med({super.key});
-
-  List<Model> user = [
-    Model(name: "setamol ", date: "10/1/2023", price: '10000'),
-    Model(name: "prfen  ", date: "12/11/2023", price: '5900'),
-    Model(name: "SODIUM  ", date: "5/9/2023", price: '41200'),
-    Model(name: "CHLORIDE ", date: "8/8/2023", price: '5000'),
-    Model(name: "POTASSIUM  ", date: "9/9/2023", price: '6800'),
-    Model(name: "CHLORIDE ", date: "8/7/2023", price: '8000'),
-    Model(name: "PSEUDOEPHEDRINE ", date: "11/10/2023", price: '9400'),
-    Model(name: "setamol ", date: "10/1/2023", price: '10000'),
-    Model(name: "prfen  ", date: "12/11/2023", price: '5900'),
-    Model(name: "SODIUM  ", date: "5/9/2023", price: '41200'),
-    Model(name: "CHLORIDE ", date: "8/8/2023", price: '5000'),
-    Model(name: "POTASSIUM  ", date: "9/9/2023", price: '6800'),
-    Model(name: "CHLORIDE ", date: "8/7/2023", price: '8000'),
-    Model(name: "PSEUDOEPHEDRINE ", date: "11/10/2023", price: '9400'),
-  ];
+class Medicine extends StatelessWidget {
+  Medicine({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green,
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Medcine'),
+        title:  Text('medicines'.tr),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SearchCategory()));
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.black,
+              ))
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: ListView.separated(
-            itemBuilder: (context, index) => item(user[index], context),
-            separatorBuilder: (context, index) => const SizedBox(
-                  height: 10,
-                ),
-            itemCount: user.length),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(60, 40, 60, 40),
+            child: FutureBuilder(
+              future: HttpRemote.getMedicines(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        Map<String, dynamic> allMedicines =
+                            HttpRemote.medicines[index];
+                        return Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)),
+                          height: 60,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Details(
+                                  price: allMedicines['price'],
+                                  brandName: allMedicines['brand_name'],
+                                  genericName: allMedicines['generic_name'],
+                                ),
+                              ));
+                            },
+                            child: Center(
+                              child: Text(allMedicines['brand_name'],
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black)),
+                            ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(
+                            height: 10,
+                          ),
+                      itemCount: HttpRemote.medicines.length),
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
 }
-
-Widget item(Model user, context) => Container(
-      child: Row(
-        children: [
-          Text(
-            '${user.name} ',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Column(
-            children: [
-              Text('Price : ${user.price}', style: const TextStyle(fontSize: 18)),
-              const SizedBox(
-                width: 40,
-              ),
-              const SizedBox(
-                width: 40,
-              ),
-              Text('  ${user.date}',
-                  style: TextStyle(fontSize: 18, color: Colors.grey))
-            ],
-          ),
-
-        ],
-      ),
-    );

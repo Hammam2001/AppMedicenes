@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/app_text-form_filed.dart';
+import 'package:get/get.dart';
+import 'package:untitled1/features/langouge/langouge.dart';
+import '../../core/app_text_form/app_text-form_filed.dart';
 import '../../core/http_remote/http_remote.dart';
 import '../add_medicine/admin.dart';
 import '../register/register_page.dart';
@@ -17,9 +19,11 @@ class Login extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: const Text(
-          'Medicine Warehouse',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
+        title:  Center(
+          child: Text(
+            'medicineWarehouse'.tr,
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
+          ),
         ),
       ),
       body: Center(
@@ -39,7 +43,7 @@ class Login extends StatelessWidget {
                    TextFiledApp(
                     controller: phoneController,
                     type: TextInputType.phone,
-                    label: 'Phone',
+                    label: 'phone'.tr,
                     obscurePassword: false,
                     prefix: Icons.numbers,
                      validate: (String value){
@@ -55,7 +59,7 @@ class Login extends StatelessWidget {
                    TextFiledApp(
                     controller: passwordController,
                     type: TextInputType.visiblePassword,
-                    label: 'Password',
+                    label: 'password'.tr,
                     obscurePassword: true,
                     prefix: Icons.lock,
                     suffix: Icons.remove_red_eye_sharp,
@@ -81,13 +85,19 @@ class Login extends StatelessWidget {
                         if(res){
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddMedicine(),));
+                        }else{
+                          ScaffoldMessenger.of(context)
+                               .showSnackBar(const SnackBar(
+                             content: Text('The number or password is wrong'),
+                             backgroundColor: Colors.red,
+                          ));
                         }
                         }
                       },
                       color: Theme.of(context).primaryColor,
-                      child: const Text(
-                        'LOGIN',
-                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      child:  Text(
+                        'login'.tr,
+                        style: const TextStyle(fontSize: 17, color: Colors.white),
                       ),
                     ),
                   ),
@@ -96,9 +106,9 @@ class Login extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Text(
-                        'Don\'t have an account?',
-                        style: TextStyle(color: Colors.black, fontSize: 18),
+                       Text(
+                         'donHaveAnAccount?'.tr,
+                        style: const TextStyle(color: Colors.black, fontSize: 18),
                       ),
                       const SizedBox(
                         width: 10,
@@ -108,7 +118,7 @@ class Login extends StatelessWidget {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
                           },
                           child:  Text(
-                            'Register',
+                            'register'.tr,
                             style: TextStyle(
                                 fontSize: 18, color: Theme.of(context).primaryColor,),
                           ))

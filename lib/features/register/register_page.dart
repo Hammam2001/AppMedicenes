@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:untitled1/core/http_remote/http_remote.dart';
+import 'package:untitled1/features/langouge/langouge.dart';
 
-import '../../core/constant.dart';
-import '../../core/app_text-form_filed.dart';
+import '../../core/app_text_form/app_text-form_filed.dart';
 import '../add_medicine/admin.dart';
 
 class Register extends StatelessWidget {
@@ -39,7 +39,7 @@ final  TextEditingController confirmPasswordController=TextEditingController();
                 TextFiledApp(
                   controller: firstNameController,
                   type: TextInputType.name,
-                  label: 'First Name',
+                  label: 'fName'.tr,
                   obscurePassword: false,
                   prefix: Icons.abc,
                   validate: (String value){
@@ -55,7 +55,7 @@ final  TextEditingController confirmPasswordController=TextEditingController();
                 TextFiledApp(
                   controller: lastNameController,
                   type: TextInputType.name,
-                  label: 'Last Name',
+                  label: 'lName'.tr,
                   obscurePassword: false,
                   prefix: Icons.abc,
                   validate: (String value){
@@ -71,7 +71,7 @@ final  TextEditingController confirmPasswordController=TextEditingController();
                 TextFiledApp(
                   controller: phoneController,
                   type: TextInputType.name,
-                  label: 'Phone',
+                  label: 'phone'.tr,
                   obscurePassword: false,
                   prefix: Icons.numbers,
                   validate: (String value){
@@ -88,7 +88,7 @@ final  TextEditingController confirmPasswordController=TextEditingController();
                   controller: passwordController,
                   type: TextInputType.visiblePassword,
                   prefix: Icons.lock,
-                  label: 'Password',
+                  label: 'password'.tr,
                   obscurePassword: true,
                   suffix: Icons.remove_red_eye_sharp,
                   validate: (String value){
@@ -127,9 +127,9 @@ final  TextEditingController confirmPasswordController=TextEditingController();
                       }
                     },
                     color: Theme.of(context).primaryColor,
-                    child: const Text(
-                      'Register',
-                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    child:  Text(
+                      'register'.tr,
+                      style: const TextStyle(fontSize: 17, color: Colors.white),
                     ),
                   ),
                 ),
