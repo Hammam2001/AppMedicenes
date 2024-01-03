@@ -40,7 +40,7 @@ class Total extends StatelessWidget {
                           ),
 
                           Text(
-                            '700' ,
+                            '',
                             style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),

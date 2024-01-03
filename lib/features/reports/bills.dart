@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled1/core/http_remote/http_remote.dart';
 
 
 
@@ -9,9 +10,9 @@ class Bills extends StatelessWidget {
   });
 
 
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -44,7 +45,7 @@ class Bills extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            'Cetamol',
+                            'cetamol',
                             style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),

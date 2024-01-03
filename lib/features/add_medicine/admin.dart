@@ -214,7 +214,7 @@ class _AddMedicineState extends State<AddMedicine> {
     categoryId: categoryId,
     manufacturerId: manufacturersId,
     context: context);
-    bool company = await HttpRemote.addCompany(nameCompany: companyController.toString());
+    HttpRemote.addCompany(nameCompany: companyController.text);
     if (res) {
     // // ignore: use_build_context_synchronously
     // ScaffoldMessenger.of(context)

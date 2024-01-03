@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:untitled1/features/orders/view_order.dart';
 import 'package:untitled1/features/reports/bills.dart';
 import 'package:untitled1/features/reports/report.dart';
+import 'package:untitled1/features/reports/total.dart';
 import 'langouge/conroller.dart';
 
 class MainDrawer extends StatefulWidget {
@@ -92,13 +93,13 @@ class _MainDrawerState extends State<MainDrawer> {
                   ],
                 ),
                 const SizedBox(height: 20,),
-                MaterialButton(onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Reports()));
-                },
-                  color: Theme.of(context).primaryColor, child:  Text('reports'.tr,
-                      style: const TextStyle(fontSize: 17, color: Colors.white)),
-                ),
-                const SizedBox(height: 20,),
+                // MaterialButton(onPressed: (){
+                //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Reports()));
+                // },
+                //   color: Theme.of(context).primaryColor, child:  Text('reports'.tr,
+                //       style: const TextStyle(fontSize: 17, color: Colors.white)),
+                // ),
+                // const SizedBox(height: 20,),
                 MaterialButton(onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Bills()));
                 },

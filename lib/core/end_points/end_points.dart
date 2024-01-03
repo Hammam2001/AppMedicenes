@@ -14,4 +14,5 @@ class EndPoints{
   static String medicinesDetails  ="/medicines/get/";
   static String dateReport  ="/bills/profits";
   static String addCompany  ="/manufacturers/add";
+  static String profits  ="/bills/medicine";
 }

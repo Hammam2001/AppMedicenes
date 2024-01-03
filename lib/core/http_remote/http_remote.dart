@@ -278,10 +278,28 @@ static List<Map<String, dynamic>> total=[];
     );
     print(response.statusCode);
     print(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode <= 300 && response.statusCode >= 200) {
       return true;
     }else{
       return false;
     }
   }
+
+  static List<Map<String, dynamic>> profits = [];
+
+  static Future<List<Map<String, dynamic>>> getProfits() async {
+    var response = await http.get(
+        Uri.parse('${EndPoints.baseUrl}${EndPoints.profits}'),
+        headers: {
+          'Accept': 'application/json',
+        });
+    print(response.body);
+    if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body)['medicine'];
+      profits = List<Map<String, dynamic>>.from(data);
+      return profits;
+    } else {
+      return [];
+    }
+    }
 }

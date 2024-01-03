@@ -81,8 +81,7 @@ class Reports extends StatelessWidget {
                       start: startDate.toString(),
                       end: lastDate.toString()))) as bool;
                   if(res){
-                    // ignore: use_build_context_synchronously
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>  const Total()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>   Total()));
                      }
                 },
                   color: Colors.white,
